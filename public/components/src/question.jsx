@@ -1,5 +1,6 @@
 function Question(props) {
     var {linkId, text, type, option} = props.data;
+    var {nextQuestion, prevQuestion} = props;
     var html_type = convertTypeToHTMLType(type);
     var elem;
 
@@ -11,13 +12,17 @@ function Question(props) {
         elem = <FormInput id={linkId} type={html_type} name={linkId}></FormInput>
 
     return (
-        <div class='question'>
-            <span class='question-body'>
+        <div className='question jumbotron' id={`q${linkId}`}>
+            <span className='question-body'>
                 {text}
             </span>
-            <div class='question-input'>
+            <div className='question-input'>
                 {elem}
             </div>
+            <span className="next-prev">
+                <a className="btn btn-primary btn-lg" href="#" onClick={prevQuestion} role="button">Previous</a>
+                <a className="btn btn-primary btn-lg" href="#" onClick={nextQuestion} role="button">Next</a>
+            </span>
         </div>
     )
 }

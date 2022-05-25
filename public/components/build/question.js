@@ -4,6 +4,8 @@ function Question(props) {
         text = _props$data.text,
         type = _props$data.type,
         option = _props$data.option;
+    var nextQuestion = props.nextQuestion,
+        prevQuestion = props.prevQuestion;
 
     var html_type = convertTypeToHTMLType(type);
     var elem;
@@ -17,16 +19,30 @@ function Question(props) {
 
     return React.createElement(
         'div',
-        { 'class': 'question' },
+        { className: 'question jumbotron', id: 'q' + linkId },
         React.createElement(
             'span',
-            { 'class': 'question-body' },
+            { className: 'question-body' },
             text
         ),
         React.createElement(
             'div',
-            { 'class': 'question-input' },
+            { className: 'question-input' },
             elem
+        ),
+        React.createElement(
+            'span',
+            { className: 'next-prev' },
+            React.createElement(
+                'a',
+                { className: 'btn btn-primary btn-lg', href: '#', onClick: prevQuestion, role: 'button' },
+                'Previous'
+            ),
+            React.createElement(
+                'a',
+                { className: 'btn btn-primary btn-lg', href: '#', onClick: nextQuestion, role: 'button' },
+                'Next'
+            )
         )
     );
 }

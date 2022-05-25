@@ -1,0 +1,41 @@
+body {
+    background-image: radial-gradient(circle, #7aa2fb, #7ea6fc, #81aafd, #85adfd, #89b1fe, #87b0fe, #84afff, #82aeff, #79a8ff, #70a3ff, #679dff, #5e97ff);
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: #e9ecef9e !important;
+    transition: 1s;
+}
+
+#root {
+    padding-top: 15%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.question {
+    text-align: center;
+}
+
+.multi-input {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.multi-input > .form-answer {
+    margin-right: 4vw;
+}
+
+.next-prev {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 28vh;
+    padding-left: 30vw;
+    padding-right: 37vw;
+}
+
+.hidden {
+    display: none;
+}

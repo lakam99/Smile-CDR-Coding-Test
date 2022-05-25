@@ -4,9 +4,10 @@ function MultiInput(props) {
 
     return React.createElement(
         'div',
-        { 'class': 'multi-input' },
+        { className: 'multi-input' },
         props.option.map(function (choice, i) {
-            return React.createElement(FormInput, { type: type, label: choice, id: linkId + ('-' + i) });
+            var id = linkId + '-' + i;
+            return React.createElement(FormInput, { type: type, key: id, label: choice, id: id });
         })
     );
 }
