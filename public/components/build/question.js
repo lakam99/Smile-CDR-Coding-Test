@@ -2,23 +2,18 @@ function Question(props) {
     var _props$data = props.data,
         linkId = _props$data.linkId,
         text = _props$data.text,
-        type = _props$data.type;
+        type = _props$data.type,
+        option = _props$data.option;
 
-    var inputType;
+    var html_type = convertTypeToHTMLType(type);
+    var elem;
 
-    switch (type) {
-        case 'boolean':
-            inputType = 'radio';
-            break;
-        case 'choice':
-            inputType = 'checkbox';
-            break;
-        case 'string':
-            inputType = 'text';
-            break;
-        default:
-            break;
-    }
+    if (type == 'boolean' || type == 'choice') {
+        var options = option ? option.map(function (o) {
+            return o.valueCoding.display;
+        }) : ['True', 'False'];
+        elem = React.createElement(MultiInput, { linkId: linkId, type: html_type, option: options });
+    } else elem = React.createElement(FormInput, { id: linkId, type: html_type, name: linkId, label: text });
 
     return React.createElement(
         'div',
@@ -31,7 +26,7 @@ function Question(props) {
         React.createElement(
             'div',
             { 'class': 'question-input' },
-            React.createElement('input', { title: linkId, type: inputType, name: linkId })
+            elem
         )
     );
 }

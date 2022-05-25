@@ -1,20 +1,14 @@
 function Question(props) {
-    var {linkId, text, type} = props.data;
-    var inputType;
+    var {linkId, text, type, option} = props.data;
+    var html_type = convertTypeToHTMLType(type);
+    var elem;
 
-    switch (type) {
-        case 'boolean':
-            inputType = 'radio';
-            break;
-        case 'choice':
-            inputType = 'checkbox';
-            break;
-        case 'string':
-            inputType = 'text';
-            break;
-        default:
-            break;
+    if (type == 'boolean' || type == 'choice') {
+        let options = option ? option.map(o=>o.valueCoding.display) : ['True', 'False'];
+        elem = <MultiInput linkId={linkId} type={html_type} option={options}></MultiInput>
     }
+    else
+        elem = <FormInput id={linkId} type={html_type} name={linkId} label={text}></FormInput>
 
     return (
         <div class='question'>
@@ -22,7 +16,7 @@ function Question(props) {
                 {text}
             </span>
             <div class='question-input'>
-                <input title={linkId} type={inputType} name={linkId}></input>
+                {elem}
             </div>
         </div>
     )

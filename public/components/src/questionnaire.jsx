@@ -1,8 +1,7 @@
 function Questionnaire(props) {
-    var {items} = props;
 
     return (
-        items.map((question)=>{
+        props.item.map((question)=>{
             return <Question data={question}></Question>
         })
     )
