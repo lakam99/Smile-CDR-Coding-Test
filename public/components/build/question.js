@@ -13,7 +13,7 @@ function Question(props) {
             return o.valueCoding.display;
         }) : ['True', 'False'];
         elem = React.createElement(MultiInput, { linkId: linkId, type: html_type, option: options });
-    } else elem = React.createElement(FormInput, { id: linkId, type: html_type, name: linkId, label: text });
+    } else elem = React.createElement(FormInput, { id: linkId, type: html_type, name: linkId });
 
     return React.createElement(
         'div',

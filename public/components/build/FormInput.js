@@ -3,7 +3,7 @@ function FormInput(props) {
         id = props.id,
         type = props.type;
 
-    var value = props.value || '0';
+    var value = props.value || '';
     return React.createElement(
         'div',
         { 'class': 'form-answer' },
@@ -12,6 +12,6 @@ function FormInput(props) {
             { 'for': id },
             label
         ),
-        React.createElement('input', { id: id, type: type, name: id, value: value })
+        React.createElement('input', { id: id, 'og-type': type, type: type == 'date' ? 'text' : type, name: id, value: value })
     );
 }

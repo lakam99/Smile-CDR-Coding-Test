@@ -8,7 +8,7 @@ function Question(props) {
         elem = <MultiInput linkId={linkId} type={html_type} option={options}></MultiInput>
     }
     else
-        elem = <FormInput id={linkId} type={html_type} name={linkId} label={text}></FormInput>
+        elem = <FormInput id={linkId} type={html_type} name={linkId}></FormInput>
 
     return (
         <div class='question'>
