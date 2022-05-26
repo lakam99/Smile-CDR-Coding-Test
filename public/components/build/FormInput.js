@@ -4,7 +4,13 @@ function FormInput(props) {
         type = props.type,
         name = props.name;
 
-    var value = props.value || '';
+    var value = typeof props.value == 'string' ? props.value : props.value.value || '';
+
+    React.useEffect(function () {
+        $('[name=\'' + name + '\']').val(value);
+        if (type == 'date') render_datepickers();
+    }, [type]);
+
     return React.createElement(
         'div',
         { className: 'form-answer' },

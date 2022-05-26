@@ -10,7 +10,7 @@ class Questionnaire extends React.Component {
             linkId: 'introtron'
         }
         this.state = {display: this.introtron_props};
-        this.questions = props.item.map((question,i,a)=>Object.assign(question, {componentName: Question, last:i==a.length-1}));
+        this.questions = props.item.map((question,i,a)=>Object.assign(question, {componentName: Question, last:i==a.length-1, value:''}));
         this.current_question_index = -1;
     }
 
@@ -19,7 +19,8 @@ class Questionnaire extends React.Component {
         alert('Form submitted');
     }
 
-    setCurrentDisplay(display) {
+    setCurrentDisplay(display,next=true) {
+        if (this.current_question_index) this.questions[this.current_question_index + (next ? -1:1)].value = $('.question-input > form').serializeArray()[0];
         fadeOut($(`#${this.state.display.linkId}`)[0]).then(()=>this.setState({display}));
     }
 
@@ -31,7 +32,7 @@ class Questionnaire extends React.Component {
 
     prevQuestion () {
         if (this.current_question_index - 1 < 0) return;
-        this.setCurrentDisplay(this.questions[--this.current_question_index]);
+        this.setCurrentDisplay(this.questions[--this.current_question_index], false);
     }
 
     gen_elem (data) {

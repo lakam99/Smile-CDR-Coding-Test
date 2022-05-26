@@ -24,7 +24,7 @@ var Questionnaire = function (_React$Component) {
         };
         _this.state = { display: _this.introtron_props };
         _this.questions = props.item.map(function (question, i, a) {
-            return Object.assign(question, { componentName: Question, last: i == a.length - 1 });
+            return Object.assign(question, { componentName: Question, last: i == a.length - 1, value: '' });
         });
         _this.current_question_index = -1;
         return _this;
@@ -41,6 +41,9 @@ var Questionnaire = function (_React$Component) {
         value: function setCurrentDisplay(display) {
             var _this2 = this;
 
+            var next = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+            if (this.current_question_index) this.questions[this.current_question_index + (next ? -1 : 1)].value = $('.question-input > form').serializeArray()[0];
             fadeOut($('#' + this.state.display.linkId)[0]).then(function () {
                 return _this2.setState({ display: display });
             });
@@ -55,7 +58,7 @@ var Questionnaire = function (_React$Component) {
         key: 'prevQuestion',
         value: function prevQuestion() {
             if (this.current_question_index - 1 < 0) return;
-            this.setCurrentDisplay(this.questions[--this.current_question_index]);
+            this.setCurrentDisplay(this.questions[--this.current_question_index], false);
         }
     }, {
         key: 'gen_elem',

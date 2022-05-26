@@ -4,7 +4,8 @@ function Question(props) {
         text = _props$data.text,
         type = _props$data.type,
         option = _props$data.option,
-        last = _props$data.last;
+        last = _props$data.last,
+        value = _props$data.value;
     var nextQuestion = props.nextQuestion,
         prevQuestion = props.prevQuestion,
         submit = props.submit;
@@ -16,11 +17,11 @@ function Question(props) {
         var options = option ? option.map(function (o) {
             return o.valueCoding.display;
         }) : ['True', 'False'];
-        if (html_type == 'select') elem = React.createElement(SelectInput, { options: options, linkId: linkId });else elem = React.createElement(MultiInput, { linkId: 'q' + linkId, type: html_type, option: options });
+        if (html_type == 'select') elem = React.createElement(SelectInput, { options: options, linkId: linkId, value: value });else elem = React.createElement(MultiInput, { linkId: 'q' + linkId, type: html_type, option: options });
     } else elem = React.createElement(
         'form',
         null,
-        React.createElement(FormInput, { id: 'q' + linkId, type: html_type, name: linkId })
+        React.createElement(FormInput, { id: 'q' + linkId, type: html_type, name: linkId, value: value })
     );
 
     return React.createElement(

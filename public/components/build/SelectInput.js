@@ -1,6 +1,12 @@
 function SelectInput(props) {
     var options = props.options,
-        linkId = props.linkId;
+        linkId = props.linkId,
+        value = props.value;
+
+
+    React.useEffect(function () {
+        $("[name='" + linkId + "']").val(value.value || options[0]);
+    }, []);
 
     return React.createElement(
         "form",

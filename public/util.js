@@ -10,7 +10,7 @@ function convertTypeToHTMLType (type) {
 
 function render_datepickers() {
     var identifier = '[og-type="date"]';
-    $('input[type="text"]').toArray().forEach((e)=>{$(e).data('datepicker')?.destroy()});
+    $('input[og-type="text"]').toArray().forEach((e)=>{$(e).data('datepicker')?.destroy()});
     var await_dates = setInterval(()=>{
         if ($(identifier).length) {
             clearInterval(await_dates);

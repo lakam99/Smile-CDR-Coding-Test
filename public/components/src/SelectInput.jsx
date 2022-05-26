@@ -1,5 +1,10 @@
 function SelectInput(props) {
-    var {options, linkId} = props;
+    var {options, linkId, value} = props;
+
+    React.useEffect(()=>{
+        $(`[name='${linkId}']`).val(value.value || options[0]);
+    }, []);
+
     return (
         <form>
             <select title={linkId} name={linkId}>
