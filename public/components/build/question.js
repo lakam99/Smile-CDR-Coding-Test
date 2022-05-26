@@ -16,7 +16,7 @@ function Question(props) {
     if (type == 'boolean' || type == 'choice') {
         var options = option ? option.map(function (o) {
             return o.valueCoding.display;
-        }) : ['Yes', 'No'];
+        }) : ['True', 'False'];
         if (html_type == 'select') elem = React.createElement(SelectInput, { options: options, linkId: linkId, value: value });else elem = React.createElement(RadioInput, { linkId: 'q' + linkId, type: html_type, option: options, value: value });
     } else elem = React.createElement(
         'form',
