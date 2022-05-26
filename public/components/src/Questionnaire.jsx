@@ -1,4 +1,6 @@
 /**
+ * Arkam Mazrui
+ * arkam.mazrui@gmail.com
  * Main Questionnaire Component
  * Functionality includes:
  * Dynamic 'Display' rendering using 'Previous','Next',&'Submit' button

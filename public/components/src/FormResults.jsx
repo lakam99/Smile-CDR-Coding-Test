@@ -1,3 +1,7 @@
+/**
+ * Arkam Mazrui
+ * arkam.mazrui@gmail.com
+ * */
 function FormResults(props) {
     var {questions, linkId} = props.data;
     return (

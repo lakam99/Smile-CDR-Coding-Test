@@ -1,3 +1,7 @@
+/**
+ * Arkam Mazrui
+ * arkam.mazrui@gmail.com
+ * */
 function RadioInput(props) {
     var {linkId, type, value} = props;
 

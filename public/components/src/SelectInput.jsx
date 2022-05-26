@@ -1,4 +1,6 @@
 /**
+ * Arkam Mazrui
+ * arkam.mazrui@gmail.com
  * Select Component
  * Functionality includes:
  * Client side form value recollection

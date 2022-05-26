@@ -1,3 +1,7 @@
+/**
+ * Arkam Mazrui
+ * arkam.mazrui@gmail.com
+ * */
 function Introtron(props) {
     var _props$data = props.data,
         title = _props$data.title,

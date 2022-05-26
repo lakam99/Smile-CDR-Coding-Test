@@ -1,3 +1,7 @@
+/**
+ * Arkam Mazrui
+ * arkam.mazrui@gmail.com
+ * */
 function FormResults(props) {
     var _props$data = props.data,
         questions = _props$data.questions,

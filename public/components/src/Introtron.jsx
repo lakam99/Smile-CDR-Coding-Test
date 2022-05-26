@@ -1,3 +1,7 @@
+/**
+ * Arkam Mazrui
+ * arkam.mazrui@gmail.com
+ * */
 function Introtron(props) {
     var {title, subheading, btn_val, btn_click, linkId, opacity} = props.data;
     return (

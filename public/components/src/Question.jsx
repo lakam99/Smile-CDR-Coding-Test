@@ -1,4 +1,6 @@
 /**
+ * Arkam Mazrui
+ * arkam.mazrui@gmail.com
  * Main Question Component
  * This component does all the heavy lifting for question rendering
  * Functionality includes:
