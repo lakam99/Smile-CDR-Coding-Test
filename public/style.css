@@ -2,10 +2,18 @@ body {
     background-image: radial-gradient(circle, #7aa2fb, #7ea6fc, #81aafd, #85adfd, #89b1fe, #87b0fe, #84afff, #82aeff, #79a8ff, #70a3ff, #679dff, #5e97ff);
 }
 
+input[type='text'] {
+    width: 55vw !important;
+}
+
+select {
+    width: 23vw !important;
+}
+
 .jumbotron {
     text-align: center;
-    background-color: #e9ecef9e !important;
-    transition: 1s;
+    background-color: #e9ecef54 !important;
+    border-radius: 4.3rem !important;
 }
 
 #root {
@@ -16,6 +24,7 @@ body {
 
 .question {
     text-align: center;
+    max-height: 39vh;
 }
 
 .multi-input {
@@ -30,12 +39,32 @@ body {
 
 .next-prev {
     display: flex;
-    justify-content: space-between;
-    margin-top: 28vh;
-    padding-left: 30vw;
-    padding-right: 37vw;
+    justify-content: center;
+    margin-top: 3vh;
 }
 
-.hidden {
-    display: none;
+.next-prev > .btn:first-child {
+    margin-right: 5vw;
 }
+
+.shake {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }

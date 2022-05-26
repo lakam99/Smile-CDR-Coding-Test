@@ -23,29 +23,33 @@ var Questionnaire = function (_React$Component) {
             linkId: 'introtron'
         };
         _this.state = { display: _this.introtron_props };
-        _this.questions = props.item.map(function (question) {
-            return Object.assign(question, { componentName: Question });
+        _this.questions = props.item.map(function (question, i, a) {
+            return Object.assign(question, { componentName: Question, last: i == a.length - 1 });
         });
         _this.current_question_index = -1;
         return _this;
     }
 
     _createClass(Questionnaire, [{
+        key: 'submitForm',
+        value: function submitForm() {
+            //todo
+            alert('Form submitted');
+        }
+    }, {
         key: 'setCurrentDisplay',
         value: function setCurrentDisplay(display) {
             var _this2 = this;
 
-            var current_display = this.state.display.linkId;
-            current_display = $('#' + current_display).addClass('hidden');
-            setTimeout(function () {
+            fadeOut($('#' + this.state.display.linkId)[0]).then(function () {
                 return _this2.setState({ display: display });
-            }, 200);
+            });
         }
     }, {
         key: 'nextQuestion',
-        value: function nextQuestion() {
-            if (this.current_question_index + 1 > this.questions.length - 1) return;
-            this.setCurrentDisplay(this.questions[++this.current_question_index]);
+        value: function nextQuestion(event) {
+            var form = $(event.target).parent().parent().find('.question-input > form');
+            if (this.current_question_index != -1 && (form.serializeArray().length ? !form.serializeArray()[0].value : true)) shakeElem(form[0]);else this.setCurrentDisplay(this.questions[++this.current_question_index]);
         }
     }, {
         key: 'prevQuestion',
@@ -58,12 +62,13 @@ var Questionnaire = function (_React$Component) {
         value: function gen_elem(data) {
             var componentName = data.componentName;
 
-            return React.createElement(componentName, { data: data, nextQuestion: this.nextQuestion.bind(this), prevQuestion: this.prevQuestion.bind(this) });
+            return React.createElement(componentName, { data: data, nextQuestion: this.nextQuestion.bind(this), prevQuestion: this.prevQuestion.bind(this), submit: this.submitForm.bind(this) });
         }
     }, {
         key: 'componentDidUpdate',
         value: function componentDidUpdate() {
             render_datepickers();
+            fadeIn($('#' + this.state.display.linkId)[0]);
         }
     }, {
         key: 'render',

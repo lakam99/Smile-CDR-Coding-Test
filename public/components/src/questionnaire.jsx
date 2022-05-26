@@ -10,19 +10,23 @@ class Questionnaire extends React.Component {
             linkId: 'introtron'
         }
         this.state = {display: this.introtron_props};
-        this.questions = props.item.map((question)=>Object.assign(question, {componentName: Question}));
+        this.questions = props.item.map((question,i,a)=>Object.assign(question, {componentName: Question, last:i==a.length-1}));
         this.current_question_index = -1;
     }
 
-    setCurrentDisplay(display) {
-        let current_display = this.state.display.linkId;
-        current_display = $(`#${current_display}`).addClass('hidden');
-        setTimeout(()=>this.setState({display}),200);
+    submitForm() {
+        //todo
+        alert('Form submitted');
     }
 
-    nextQuestion () {
-        if (this.current_question_index + 1 > this.questions.length - 1) return;
-        this.setCurrentDisplay(this.questions[++this.current_question_index]);
+    setCurrentDisplay(display) {
+        fadeOut($(`#${this.state.display.linkId}`)[0]).then(()=>this.setState({display}));
+    }
+
+    nextQuestion (event) {
+        var form = $(event.target).parent().parent().find('.question-input > form');
+        if (this.current_question_index != -1 && (form.serializeArray().length ? !form.serializeArray()[0].value : true)) shakeElem(form[0]);
+        else this.setCurrentDisplay(this.questions[++this.current_question_index]);
     }
 
     prevQuestion () {
@@ -32,11 +36,12 @@ class Questionnaire extends React.Component {
 
     gen_elem (data) {
         var {componentName} = data;
-        return React.createElement(componentName, {data, nextQuestion:this.nextQuestion.bind(this), prevQuestion:this.prevQuestion.bind(this)});
+        return React.createElement(componentName, {data, nextQuestion:this.nextQuestion.bind(this), prevQuestion:this.prevQuestion.bind(this), submit:this.submitForm.bind(this)});
     }
 
     componentDidUpdate() {
         render_datepickers();
+        fadeIn($(`#${this.state.display.linkId}`)[0]);
     }
 
 

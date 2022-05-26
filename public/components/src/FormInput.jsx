@@ -1,10 +1,10 @@
 function FormInput(props) {
-    var {label, id, type} = props;
+    var {label, id, type, name} = props;
     var value = props.value || '';
     return (
         <div className='form-answer'>
-            <label htmlFor={id}>{label}</label>
-            <input id={id} og-type={type} type={type == 'date' ? 'text':type} name={id} defaultValue={value}></input>
+            <label className="lead" htmlFor={id}>{label}</label>&nbsp;
+            <input id={id} og-type={type} type={type == 'date' ? 'text':type} name={name} defaultValue={value}></input>
         </div>
     )
 }

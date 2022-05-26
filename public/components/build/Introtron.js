@@ -3,11 +3,12 @@ function Introtron(props) {
         title = _props$data.title,
         subheading = _props$data.subheading,
         btn_val = _props$data.btn_val,
-        btn_click = _props$data.btn_click;
+        btn_click = _props$data.btn_click,
+        linkId = _props$data.linkId;
 
     return React.createElement(
         "div",
-        { className: "jumbotron" },
+        { id: linkId, className: "jumbotron" },
         React.createElement(
             "h1",
             { className: "display-4" },
