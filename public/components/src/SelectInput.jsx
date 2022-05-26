@@ -1,3 +1,10 @@
+/**
+ * Select Component
+ * Functionality includes:
+ * Client side form value recollection
+ * Cannot be made with the FormInput Component
+ */
+
 function SelectInput(props) {
     var {options, linkId, value} = props;
 

@@ -1,3 +1,11 @@
+/**
+ * Main Question Component
+ * This component does all the heavy lifting for question rendering
+ * Functionality includes:
+ * Converting question 'type' to html 'type'
+ * Rendering datepicker for 'date' inputs & auto complete for 'country' input
+ */
+
 function Question(props) {
     var {linkId, text, type, option, last, value} = props.data;
     var {nextQuestion, prevQuestion, submit} = props;

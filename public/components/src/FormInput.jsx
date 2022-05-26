@@ -1,3 +1,9 @@
+/**
+ * Main Form Component
+ * Functionality includes:
+ * Client side form value recollection
+ */
+
 function FormInput(props) {
     var {label, id, type, name, checked} = props;
     var value = (typeof props.value == 'string') ? props.value : props.value.value || '';

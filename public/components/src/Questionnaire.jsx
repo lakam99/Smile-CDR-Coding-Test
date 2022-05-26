@@ -1,3 +1,8 @@
+/**
+ * Main Questionnaire Component
+ * Functionality includes:
+ * Dynamic 'Display' rendering using 'Previous','Next',&'Submit' button
+ */
 class Questionnaire extends React.Component {
     constructor(props) {
         super(props);

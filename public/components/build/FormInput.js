@@ -1,3 +1,9 @@
+/**
+ * Main Form Component
+ * Functionality includes:
+ * Client side form value recollection
+ */
+
 function FormInput(props) {
     var label = props.label,
         id = props.id,
