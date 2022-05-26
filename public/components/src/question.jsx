@@ -4,8 +4,14 @@ function Question(props) {
     var html_type = convertTypeToHTMLType(type);
     var elem;
 
+
+    React.useEffect(()=>{
+        render_datepickers();
+        if (text.toLowerCase().includes('country')) renderAutocomplete();
+    })
+
     if (type == 'boolean' || type == 'choice') {
-        var options = option ? option.map(o=>o.valueCoding.display) : ['True', 'False'];
+        var options = option ? option.map(o=>o.valueCoding.display) : ['Yes', 'No'];
         if (html_type == 'select') elem = <SelectInput options={options} linkId={linkId} value={value}></SelectInput>
         else elem = <RadioInput linkId={`q${linkId}`} type={html_type} option={options} value={value}></RadioInput>
     }

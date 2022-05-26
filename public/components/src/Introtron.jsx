@@ -1,7 +1,7 @@
 function Introtron(props) {
-    var {title, subheading, btn_val, btn_click, linkId} = props.data;
+    var {title, subheading, btn_val, btn_click, linkId, opacity} = props.data;
     return (
-        <div id={linkId} className="jumbotron">
+        <div id={linkId} className="jumbotron" style={{opacity:opacity !== undefined ? opacity:1}}>
             <h1 className="display-4">{title}</h1>
             <p className="lead">{subheading.split('.')[0]}</p>
             <p>{subheading.split('.')[1]}</p>

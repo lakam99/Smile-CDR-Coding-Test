@@ -1,5 +1,6 @@
 const fadeOutTime = 50;
 const fadeInTime = 30;
+var await_dates;
 
 function convertTypeToHTMLType (type) {
     if (type == 'boolean') return 'radio';
@@ -8,14 +9,23 @@ function convertTypeToHTMLType (type) {
     return type;
 }
 
+function renderAutocomplete(elem) {
+    $('input:not([type="date"])').autocomplete({source:country_list, minLength:0})
+    .focus(function() {
+        $(this).autocomplete('search', $(this).val())
+    }).focusout(function() {
+        if ($(this).attr('og-type') != 'date' && !country_list.includes($(this).val())) $(this).val('');
+    });
+}
+
 function render_datepickers() {
     var identifier = '[og-type="date"]';
     $('input[og-type="text"]').toArray().forEach((e)=>{$(e).data('datepicker')?.destroy()});
-    var await_dates = setInterval(()=>{
+    clearInterval(await_dates);
+    await_dates = setInterval(()=>{
         if ($(identifier).length) {
             clearInterval(await_dates);
             $(identifier).toArray().forEach((date_elem)=>{
-                if ($(date_elem).data('datepicker')) return;
                 $(date_elem).data('datepicker', new Datepicker(date_elem, {maxDate: new Date()}));
             })
         }
@@ -54,8 +64,6 @@ function fadeIn(elem) {
 }
 
 function shakeElem(elem) {
-    return new Promise((resolve)=>{
-        $(elem).addClass('shake');
-        setTimeout(()=>$(elem).removeClass('shake'), 820);
-    })
+    $(elem).addClass('shake');
+    setTimeout(()=>$(elem).removeClass('shake'), 820);
 }

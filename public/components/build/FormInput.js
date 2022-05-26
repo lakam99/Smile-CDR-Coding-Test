@@ -9,7 +9,6 @@ function FormInput(props) {
 
     React.useEffect(function () {
         $('[name=\'' + name + '\']:not([type="radio"]').val(value);
-        if (type == 'date') render_datepickers();
     }, [type]);
 
     return React.createElement(
@@ -21,6 +20,6 @@ function FormInput(props) {
             label
         ),
         '\xA0',
-        React.createElement('input', { id: id, 'og-type': type, type: type == 'date' ? 'text' : type, name: name, defaultValue: value, defaultChecked: checked })
+        React.createElement('input', { id: id, 'og-type': type, type: type == 'date' ? 'text' : type, name: name, readOnly: type == 'date', defaultValue: value, defaultChecked: checked })
     );
 }

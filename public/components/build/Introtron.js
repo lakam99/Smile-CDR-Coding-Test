@@ -4,11 +4,12 @@ function Introtron(props) {
         subheading = _props$data.subheading,
         btn_val = _props$data.btn_val,
         btn_click = _props$data.btn_click,
-        linkId = _props$data.linkId;
+        linkId = _props$data.linkId,
+        opacity = _props$data.opacity;
 
     return React.createElement(
         "div",
-        { id: linkId, className: "jumbotron" },
+        { id: linkId, className: "jumbotron", style: { opacity: opacity !== undefined ? opacity : 1 } },
         React.createElement(
             "h1",
             { className: "display-4" },

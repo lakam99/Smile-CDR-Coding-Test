@@ -4,13 +4,12 @@ function FormInput(props) {
 
     React.useEffect(()=>{
         $(`[name='${name}']:not([type="radio"]`).val(value);
-        if (type == 'date') render_datepickers();
     }, [type])
 
     return (
         <div className='form-answer'>
             <label className="lead" htmlFor={id}>{label}</label>&nbsp;
-            <input id={id} og-type={type} type={type == 'date' ? 'text':type} name={name} defaultValue={value} defaultChecked={checked}></input>
+            <input id={id} og-type={type} type={type == 'date' ? 'text':type} name={name} readOnly={type=='date'} defaultValue={value} defaultChecked={checked}></input>
         </div>
     )
 }

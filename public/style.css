@@ -3,7 +3,7 @@ body {
 }
 
 input[type='text'] {
-    width: 55vw !important;
+    width: 95% !important;
 }
 
 select {
@@ -14,12 +14,13 @@ select {
     text-align: center;
     background-color: #e9ecef54 !important;
     border-radius: 4.3rem !important;
+    width: 63vw;
 }
 
 #root {
-    padding-top: 15%;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-top: 5%;
+    display: flex;
+    justify-content: center;
 }
 
 .question {
@@ -76,4 +77,13 @@ select {
     40%, 60% {
       transform: translate3d(4px, 0, 0);
     }
+  }
+
+  ul.ui-autocomplete {
+      max-height: 50vh;
+      overflow: hidden;
+  }
+
+  td {
+      padding: 1vw;
   }

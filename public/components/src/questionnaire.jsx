@@ -28,8 +28,11 @@ class Questionnaire extends React.Component {
         fadeOut($(`#${this.state.display.linkId}`)[0]).then(()=>this.setState({display}));
     }
 
-    setCurrentDisplay(display,next=true) {
-        if (this.current_question_index || !this.current_question_index && !next) this.questions[this.current_question_index + (next ? -1:1)].value = $('.question-input > form').serializeArray()[0];
+    setCurrentDisplay(display,next=-1) {
+        if (this.current_question_index || !this.current_question_index && next != -1) {
+            let form_value = $('.question-input > form').serializeArray()[0];
+            this.questions[this.current_question_index + next].value = form_value || ''; 
+        }
         this.fade_out_into_new_display(display);
     }
 
@@ -41,10 +44,11 @@ class Questionnaire extends React.Component {
 
     prevQuestion () {
         if (this.current_question_index - 1 < 0) {
-            this.fade_out_into_new_display(this.introtron_props);
+            this.setCurrentDisplay(Object.assign(this.introtron_props, {opacity: 0}), 0)
+            this.fade_out_into_new_display(Object.assign(this.introtron_props, {opacity: 0}));
             this.current_question_index = -1;
         }
-        else this.setCurrentDisplay(this.questions[--this.current_question_index], false);
+        else this.setCurrentDisplay(this.questions[--this.current_question_index], 1);
     }
 
     gen_elem (data) {
@@ -53,10 +57,8 @@ class Questionnaire extends React.Component {
     }
 
     componentDidUpdate() {
-        render_datepickers();
         fadeIn($(`#${this.state.display.linkId}`)[0]);
     }
-
 
     render() {
         return this.gen_elem(this.state.display);
