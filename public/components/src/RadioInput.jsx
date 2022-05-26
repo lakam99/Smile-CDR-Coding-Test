@@ -7,7 +7,7 @@ function RadioInput(props) {
             props.option.map((choice,i)=>{
                 var id = `${linkId}-${i}`;
                 return (
-                    <FormInput type={type} key={id} label={choice} id={id} name={linkId} value={choice} checked={value.name == 'linkId'}></FormInput>
+                    <FormInput type={type} key={id} label={choice} id={id} name={linkId} value={choice} checked={value.value == choice}></FormInput>
                 )
             })}
         </form>

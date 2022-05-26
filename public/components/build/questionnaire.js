@@ -32,21 +32,31 @@ var Questionnaire = function (_React$Component) {
 
     _createClass(Questionnaire, [{
         key: 'submitForm',
-        value: function submitForm() {
-            //todo
-            alert('Form submitted');
+        value: function submitForm(event) {
+            var results = {
+                componentName: FormResults,
+                questions: this.questions,
+                linkId: 'results'
+            };
+            this.questions.push(results);
+            this.nextQuestion(event);
+        }
+    }, {
+        key: 'fade_out_into_new_display',
+        value: function fade_out_into_new_display(display) {
+            var _this2 = this;
+
+            fadeOut($('#' + this.state.display.linkId)[0]).then(function () {
+                return _this2.setState({ display: display });
+            });
         }
     }, {
         key: 'setCurrentDisplay',
         value: function setCurrentDisplay(display) {
-            var _this2 = this;
-
             var next = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 
-            if (this.current_question_index) this.questions[this.current_question_index + (next ? -1 : 1)].value = $('.question-input > form').serializeArray()[0];
-            fadeOut($('#' + this.state.display.linkId)[0]).then(function () {
-                return _this2.setState({ display: display });
-            });
+            if (this.current_question_index || !this.current_question_index && !next) this.questions[this.current_question_index + (next ? -1 : 1)].value = $('.question-input > form').serializeArray()[0];
+            this.fade_out_into_new_display(display);
         }
     }, {
         key: 'nextQuestion',
@@ -57,8 +67,10 @@ var Questionnaire = function (_React$Component) {
     }, {
         key: 'prevQuestion',
         value: function prevQuestion() {
-            if (this.current_question_index - 1 < 0) return;
-            this.setCurrentDisplay(this.questions[--this.current_question_index], false);
+            if (this.current_question_index - 1 < 0) {
+                this.fade_out_into_new_display(this.introtron_props);
+                this.current_question_index = -1;
+            } else this.setCurrentDisplay(this.questions[--this.current_question_index], false);
         }
     }, {
         key: 'gen_elem',

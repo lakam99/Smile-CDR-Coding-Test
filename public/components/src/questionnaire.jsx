@@ -14,14 +14,23 @@ class Questionnaire extends React.Component {
         this.current_question_index = -1;
     }
 
-    submitForm() {
-        //todo
-        alert('Form submitted');
+    submitForm(event) {
+        var results = {
+            componentName: FormResults,
+            questions: this.questions,
+            linkId: 'results'
+        }
+        this.questions.push(results);
+        this.nextQuestion(event);
+    }
+
+    fade_out_into_new_display(display) {
+        fadeOut($(`#${this.state.display.linkId}`)[0]).then(()=>this.setState({display}));
     }
 
     setCurrentDisplay(display,next=true) {
-        if (this.current_question_index) this.questions[this.current_question_index + (next ? -1:1)].value = $('.question-input > form').serializeArray()[0];
-        fadeOut($(`#${this.state.display.linkId}`)[0]).then(()=>this.setState({display}));
+        if (this.current_question_index || !this.current_question_index && !next) this.questions[this.current_question_index + (next ? -1:1)].value = $('.question-input > form').serializeArray()[0];
+        this.fade_out_into_new_display(display);
     }
 
     nextQuestion (event) {
@@ -31,8 +40,11 @@ class Questionnaire extends React.Component {
     }
 
     prevQuestion () {
-        if (this.current_question_index - 1 < 0) return;
-        this.setCurrentDisplay(this.questions[--this.current_question_index], false);
+        if (this.current_question_index - 1 < 0) {
+            this.fade_out_into_new_display(this.introtron_props);
+            this.current_question_index = -1;
+        }
+        else this.setCurrentDisplay(this.questions[--this.current_question_index], false);
     }
 
     gen_elem (data) {

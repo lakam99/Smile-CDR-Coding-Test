@@ -7,7 +7,7 @@ function Question(props) {
     if (type == 'boolean' || type == 'choice') {
         var options = option ? option.map(o=>o.valueCoding.display) : ['True', 'False'];
         if (html_type == 'select') elem = <SelectInput options={options} linkId={linkId} value={value}></SelectInput>
-        else elem = <MultiInput linkId={`q${linkId}`} type={html_type} option={options}></MultiInput>
+        else elem = <RadioInput linkId={`q${linkId}`} type={html_type} option={options} value={value}></RadioInput>
     }
     else elem = (<form><FormInput id={`q${linkId}`} type={html_type} name={linkId} value={value}></FormInput></form>)
 

@@ -9,7 +9,7 @@ function RadioInput(props) {
         { className: "multi-input" },
         props.option.map(function (choice, i) {
             var id = linkId + "-" + i;
-            return React.createElement(FormInput, { type: type, key: id, label: choice, id: id, name: linkId, value: choice, checked: value.name == 'linkId' });
+            return React.createElement(FormInput, { type: type, key: id, label: choice, id: id, name: linkId, value: choice, checked: value.value == choice });
         })
     );
 }
