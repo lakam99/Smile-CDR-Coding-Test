@@ -8,7 +8,7 @@
     "start": "node app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Arkam Mazrui",
   "license": "ISC",
   "dependencies": {
     "babel-cli": "^6.26.0",
