@@ -52,7 +52,6 @@ class Questionnaire extends React.Component {
     prevQuestion () {
         if (this.current_question_index - 1 < 0) {
             this.setCurrentDisplay(Object.assign(this.introtron_props, {opacity: 0}), 0)
-            this.fade_out_into_new_display(Object.assign(this.introtron_props, {opacity: 0}));
             this.current_question_index = -1;
         }
         else this.setCurrentDisplay(this.questions[--this.current_question_index], 1);
