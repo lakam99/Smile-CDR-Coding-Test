@@ -36,7 +36,7 @@ class Questionnaire extends React.Component {
     }
 
     setCurrentDisplay(display,next=-1) {
-        if (this.current_question_index || !this.current_question_index && next != -1) {
+        if (display.componentName != Introtron) {
             let form_value = $('.question-input > form').serializeArray()[0];
             this.questions[this.current_question_index + next].value = form_value || ''; 
         }
